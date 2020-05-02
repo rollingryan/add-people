@@ -2,7 +2,7 @@
 /*
 Plugin Name: Add People
 Plugin URI: https://github.com/rollingryan/add-people
-Description: Add workplace people to your WordPress site
+Description: WordPress plugin to add workplace people to your website
 Author: Ryan Donald
 Version: 1.0
 Author URI: https://github.com/rollingryan
