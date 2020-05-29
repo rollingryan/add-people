@@ -1,9 +1,9 @@
 <?php
 if (!class_exists('Add_People')) {
   class Add_People {
-
     // Register the 'Person' custom post type
-    public static function ap_person_post_type() {
+    public static function ap_person_post_type_shortcode() {
+      // Add post type
       register_post_type('ap_person',
         [
           'labels' => [
@@ -72,13 +72,7 @@ if (!class_exists('Add_People')) {
 
           <li class='ap-custom-fields__field'>
             <label class='ap-custom-fields__field--label' for='position_field'>Position: </label>
-            <select class='ap-custom-fields__field--element' name='position_field' id='position_field'>
-              <option value='' disabled selected>Select a role...</option>
-              <option value='project-manager' <?php selected($ap_position_value, 'project-manager'); ?>>Project Manager</option>
-              <option value='delivery-manager' <?php selected($ap_position_value, 'delivery-manager'); ?>>Delivery Manager</option>
-              <option value='developer' <?php selected($ap_position_value, 'developer'); ?>>Developer</option>
-              <option value='qa-tester' <?php selected($ap_position_value, 'qa-tester'); ?>>QA Tester</option>
-            </select>
+            <input class='ap-custom-fields__field--element' type='text' name='position_field' id='position_field' value="<?php echo isset($ap_position_value) ? esc_attr($ap_position_value) : ''; ?>">
           </li>
 
           <li class='ap-custom-fields__field'>

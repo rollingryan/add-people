@@ -19,8 +19,8 @@ if (!function_exists('add_action')) {
 define('ADD_PEOPLE__PLUGIN_DIR', plugin_dir_path(__FILE__));
 
 // Add custom image sizes
-add_image_size('ap_person_thumb', 50, 50);
-add_image_size('ap_person_full', 200, 200);
+add_image_size('ap_person_thumb', 150, 150, true);
+add_image_size('ap_person_full', 500, 500, true);
 
 // Styles
 function admin_register_head() {
@@ -29,42 +29,30 @@ function admin_register_head() {
   echo "<link rel='stylesheet' type='text/css' href='$url' />\n";
 }
 
-// Gutenberg block editor assets
-function ap_gutenberg_block_admin() {
-  wp_enqueue_script(
-    'gutenberg-add-people-block-editor',
-    plugins_url('add-people-block.js', __FILE__),
-    ['wp-blocks', 'wp-element']
-  );
+function ap_scripts() {
+  $siteurl = get_option('siteurl');
+  $url = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/add-people-frontend-styles.css';
 
-  wp_enqueue_style(
-    'gutenberg-add-people-block-editor',
-    plugins_url('add-people-block-styles.css', __FILE__),
-    []
-  );
-}
-
-// Frontend Assets
-function ap_gutenberg_block_frontend() {
-  wp_enqueue_style(
-    'gutenberg-add-people-block-editor',
-    plugins_url('add-people-block-styles.css', __FILE__),
-    []
-  );
+  wp_enqueue_style('add-people-frontend-styles', $url);
 }
 
 register_activation_hook(__FILE__, ['Add-People', 'ap_plugin_activation']);
 register_deactivation_hook(__FILE__, ['Add-People', 'ap_plugin_deactivation']);
 
 require_once(ADD_PEOPLE__PLUGIN_DIR . 'class.add-people.php');
-// require_once(ADD_PEOPLE__PLUGIN_DIR . 'class.add-people-rest-api.php');
+require_once(ADD_PEOPLE__PLUGIN_DIR . 'class.add-people-shortcode.php');
 
-// Action hooks for plugin
+
+// Action hooks for plugin (Only display in admin)
 if (is_admin()) {
-  add_action('init', ['Add_People', 'ap_person_post_type']); // Initialise the class
+  add_action('init', ['Add_People', 'ap_person_post_type_shortcode']); // Initialise the class and shortcode
   add_action('add_meta_boxes', ['Add_People', 'ap_add_custom_meta_boxes']); // Add custom meta fields
   add_action('save_post', ['Add_People', 'ap_save_person_fields']); // Save/Update fields
   add_action('admin_head', 'admin_register_head'); // Admin styles
-  add_action('enqueue_block_editor_assets', 'ap_gutenberg_block_admin'); // Load assets when editor is active
-  add_action('wp_enqueue_scripts', 'ap_gutenberg_block_frontend'); // Load assets for frontend
+}
+
+// Add shortcode for plugin (Only display on frontend)
+if (!is_admin()) {
+  add_shortcode('add-people', ['Add_People_Shortcode', 'ap_shortcode']);
+  add_action('wp_enqueue_scripts', 'ap_scripts');
 }
