@@ -1,7 +1,7 @@
 .ap {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 
@@ -11,14 +11,14 @@
   flex-basis: 0;
   flex: 1 1 0px;
   justify-content: flex-start;
-  align-items: center;  
-  margin-right: 2rem;
+  align-items: center;
+  margin-right: 5%;
   margin-bottom: 3rem;
-  min-width: 31%;
-  max-width: 31%;
+  min-width: 30%;
+  max-width: 30%;
 }
 
-.ap__item:nth-child(4n) {
+.ap__item:nth-child(3n) {
   margin-right: 0;
 }
 
@@ -41,21 +41,20 @@
 }
 
 .ap__item .ap__thumb > img {
-  transform: scale(1);
+  transform: scale(1.1);
   transition: transform 0.25s linear;
 }
 
 .ap__item:hover .ap__thumb > img {
-  transform: scale(1.1);
+  transform: scale(1.2);
   transition: transform 0.25s linear;
 }
 
 .ap__info {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 0 0.3rem 0.3rem 0;
-  margin: 1rem;
-  margin-left: 0;
-  padding: 1.5rem;
+  margin: 1rem 0;
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
   width: calc(100% - 3rem);
   transition: background-color 0.25s linear;
 }
