@@ -13,12 +13,26 @@ module.exports = function (grunt) {
       base: "client",
 
       // JavaScript assets
-      js: {
+      // js: {
+      //   base: "js", //Base dir
+      //   src: "<%= paths.js.base %>/dev", // Development code
+      //   dest: "<%= paths.js.base %>/prod", // Production code
+      //   files_std: "**/<%= paths.js.src %>/**/*.js", // Standard file match
+      //   files: "<%= paths.js.files_std %>", // Dynamic file match
+      // },
+
+      babel: {
+        options: {
+          sourceMap: true,
+          presets: ["@babel/preset-env"],
+        },
         base: "js", //Base dir
-        src: "<%= paths.js.base %>/dev", // Development code
-        dest: "<%= paths.js.base %>/prod", // Production code
-        files_std: "**/<%= paths.js.src %>/**/*.js", // Standard file match
-        files: "<%= paths.js.files_std %>", // Dynamic file match
+        src: "<%= paths.babel.base %>/dev", // Development code
+        dest: "<%= paths.babel.base %>/prod", // Production code
+        dist: {
+          files_std: "**/<%= paths.babel.src %>/**/*.js", // Standard file match
+          files: "<%= paths.babel.files_std %>", // Dynamic file match
+        },
       },
 
       // Sass assets
@@ -38,6 +52,6 @@ module.exports = function (grunt) {
   grunt.loadTasks("grunt");
 
   // Default Tasks
-  grunt.registerTask("build", ["jshint:all", "uglify", "sass"]);
-  grunt.registerTask("watch_all", ["watch:js", "watch:sass"]);
+  grunt.registerTask("default", ["babel", "sass"]);
+  grunt.registerTask("watch_all", ["watch:babel", "watch:sass"]);
 };

@@ -8,16 +8,16 @@ module.exports = function (grunt) {
       files: ["themes/**/<%= paths.sass.src %>/**/*.scss"],
       tasks: ["sass:themes"],
     },
-    jshint: {
+    // jshint: {
+    //   files: "<%= paths.js.files_std %>",
+    //   tasks: ["jshint:all"],
+    //   options: {
+    //     spawn: false,
+    //   },
+    // },
+    babel: {
       files: "<%= paths.js.files_std %>",
-      tasks: ["jshint:all"],
-      options: {
-        spawn: false,
-      },
-    },
-    js: {
-      files: "<%= paths.js.files_std %>",
-      tasks: ["jshint:all", "uglify:all"],
+      tasks: [],
       options: {
         spawn: false,
       },

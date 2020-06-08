@@ -30,7 +30,7 @@ module.exports = function (grunt) {
           console: true,
         },
       },
-      src: ["<%= paths.js.files %>"],
+      src: ["<%= paths.babel.dist.files %>"],
     },
   });
 };

@@ -1,0 +1,1 @@
+var peopleItems=document.getElementsByClassName("ap__item");console.log("peopleItems",peopleItems);

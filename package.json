@@ -2,7 +2,9 @@
   "name": "add-people-legacy-plugin",
   "version": "1.0.0",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "grunt": "^1.1.0",
+    "grunt-babel": "^7.0.0",
     "grunt-contrib-jshint": "^2.1.0",
     "grunt-contrib-nodeunit": "^2.1.0",
     "grunt-contrib-uglify": "^4.0.1",

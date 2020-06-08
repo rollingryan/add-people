@@ -25,15 +25,17 @@ add_image_size('ap_person_full', 500, 500, true);
 // Styles
 function admin_register_head() {
   $siteurl = get_option('siteurl');
-  $url = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/add-people-cpt-styles.css';
+  $url = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/css/admin.css';
   echo "<link rel='stylesheet' type='text/css' href='$url' />\n";
 }
 
 function ap_scripts() {
   $siteurl = get_option('siteurl');
-  $url = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/add-people-frontend-styles.css';
+  $cssURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/css/frontend.css';
+  $scriptURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/js/prod/frontend.js';
 
-  wp_enqueue_style('add-people-frontend-styles', $url);
+  wp_enqueue_style('add-people-frontend-styles', $cssURL);
+  wp_enqueue_script('add-people-frontend-script', $scriptURL);
 }
 
 register_activation_hook(__FILE__, ['Add-People', 'ap_plugin_activation']);

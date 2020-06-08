@@ -73,6 +73,12 @@ if (!class_exists('Add_People_Shortcode')) {
           $markup .=        $person_position;
           $markup .=      '</p>';
           $markup .=    '</div>';
+          $markup .=    '<div class="ap__popup">';
+          $markup .=      '<span class="ap__popup__overlay ap__close"></span>';
+          $markup .=      '<div class="ap__popup__window">';
+          $markup .=        '<button class="ap__close">&#10005;</button>';
+          $markup .=      '</div>';
+          $markup .=    '</div>';
           $markup .= '</div>';
         endforeach;
         wp_reset_postdata();
