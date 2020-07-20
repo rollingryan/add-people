@@ -32,7 +32,7 @@ function admin_register_head() {
 function ap_scripts() {
   $siteurl = get_option('siteurl');
   $cssURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/css/frontend.css';
-  $scriptURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/js/prod/frontend.js';
+  $scriptURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/js/prod/frontend.min.js';
 
   wp_enqueue_style('add-people-frontend-styles', $cssURL);
   wp_enqueue_script('add-people-frontend-script', $scriptURL);
