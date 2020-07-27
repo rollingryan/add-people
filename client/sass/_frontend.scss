@@ -2,6 +2,10 @@
 $tablet: 769px !default;
 $desktop: 1281px !default;
 
+// Colors
+$black: rgb(0, 0, 0);
+$white: rgb(255, 255, 255);
+
 .ap {
   display: flex;
   flex-flow: column nowrap;
@@ -48,10 +52,8 @@ $desktop: 1281px !default;
     }
 
     &:hover {
-      cursor: pointer;
-
       .ap__thumb {
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 5px 5px 15px rgba($black, 0.2);
         transition: box-shadow 0.25s linear;
 
         > img {
@@ -61,7 +63,7 @@ $desktop: 1281px !default;
       }
 
       .ap__info {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba($black, 0.2);
         transition: background-color 0.25s linear;
       }
     }
@@ -70,9 +72,9 @@ $desktop: 1281px !default;
   &__thumb {
     overflow: hidden;
     border-radius: 0.5rem;
-    margin: -1rem;
+    margin: -2rem;
     z-index: 1;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba($black, 0.1);
     transition: box-shadow 0.25s linear;
 
     > img {
@@ -82,12 +84,16 @@ $desktop: 1281px !default;
   }
 
   &__info {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba($black, 0.1);
     border-radius: 0 0.3rem 0.3rem 0;
     margin: 1rem 0;
-    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    padding: 0.8rem 0.8rem 0.8rem 3rem;
     width: calc(100% - 3rem);
     transition: background-color 0.25s linear;
+
+    .button {
+      margin-bottom: 0;
+    }
   }
 
   &__name {
@@ -95,37 +101,66 @@ $desktop: 1281px !default;
     margin-bottom: 0.5rem !important;
   }
 
-  &__position {
-    margin-bottom: 0;
-  }
-
   &__popup {
-    display: none;
     position: relative;
     z-index: 2;
+    will-change: opacity left;
+    left: -99999px;
+    opacity: 0;
 
-    &.visible {
-      display: block;
+    &--visible {
+      opacity: 1;
+      left: 0;
+
+      .ap__popup__window {
+        position: fixed;
+        opacity: 1;
+      }
+
+      .ap__popup__overlay {
+        position: fixed;
+      }
     }
 
     &__overlay {
       display: block;
       width: 100vw;
       height: 100vh;
-      position: fixed;
-      top: 0;
+      position: absolute;
+      bottom: 0;
       left: 0;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba($black, 0.6);
+      cursor: pointer;
     }
 
     &__window {
-      padding: 5rem;
-      background: rgba(255, 255, 255, 0.6);
-      position: fixed;
+      padding: 1rem;
+      background: rgba($white, 0.6);
+      position: absolute;
       z-index: 3;
-      border-radius: 2rem 0;
+      border-radius: 1rem;
       left: 50%;
       top: 50%;
+      will-change: opacity;
+      opacity: 0;
+    }
+  }
+
+  &__close {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 0.2rem;
+    margin: 0;
+    cursor: pointer;
+    padding: 0.3rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba($white, 0.7);
+
+    &:hover {
+      background: $white;
     }
   }
 }

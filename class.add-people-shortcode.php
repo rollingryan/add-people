@@ -61,22 +61,23 @@ if (!class_exists('Add_People_Shortcode')) {
           $person_github = get_post_meta($person->ID, '_ap_xing', true);
           $person_github = get_post_meta($person->ID, '_ap_facebook', true);
 
-          $markup .= '<div class="ap__item">';
+          $markup .= '<div class="ap__item ap__item--' . $person->ID . '">';
           $markup .=   '<div class="ap__thumb">';
           $markup .=      $person_img_thumb ? $person_img_thumb : $person_default_thumb;
           $markup .=    '</div>';
           $markup .=    '<div class="ap__info">';
-          $markup .=      '<h6 class="ap__name">';
+          $markup .=      '<h4 class="ap__name">';
           $markup .=        $person_first_name . ' ' . $person_last_name;
-          $markup .=      '</h6>';
+          $markup .=      '</h4>';
           $markup .=      '<p class="ap__position">';
           $markup .=        $person_position;
           $markup .=      '</p>';
+          $markup .=      '<button class="button small ap__trigger">Read more</button>';
           $markup .=    '</div>';
           $markup .=    '<div class="ap__popup">';
-          $markup .=      '<span class="ap__popup__overlay ap__close"></span>';
+          $markup .=      '<span class="ap__popup__overlay ap__trigger"></span>';
           $markup .=      '<div class="ap__popup__window">';
-          $markup .=        '<button class="ap__close">&#10005;</button>';
+          $markup .=        '<button class="ap__close ap__trigger">&#10005;</button>';
           $markup .=      '</div>';
           $markup .=    '</div>';
           $markup .= '</div>';
@@ -89,8 +90,7 @@ if (!class_exists('Add_People_Shortcode')) {
       endif;
 
       $markup .=  '</div>';
-
-      // Return markup
+      
       return $markup;
     }
   }

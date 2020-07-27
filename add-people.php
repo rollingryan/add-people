@@ -31,8 +31,8 @@ function admin_register_head() {
 
 function ap_scripts() {
   $siteurl = get_option('siteurl');
-  $cssURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/css/frontend.css';
-  $scriptURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/js/prod/frontend.min.js';
+  $cssURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/css/public.css';
+  $scriptURL = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/client/js/prod/public.min.js';
 
   wp_enqueue_style('add-people-frontend-styles', $cssURL);
   wp_enqueue_script('add-people-frontend-script', $scriptURL);
@@ -56,5 +56,7 @@ if (is_admin()) {
 // Add shortcode for plugin (Only display on frontend)
 if (!is_admin()) {
   add_shortcode('add-people', ['Add_People_Shortcode', 'ap_shortcode']);
-  add_action('wp_enqueue_scripts', 'ap_scripts');
 }
+
+// Add global scripts
+add_action('wp_enqueue_scripts', 'ap_scripts');
