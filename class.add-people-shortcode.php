@@ -56,10 +56,17 @@ if (!class_exists('Add_People_Shortcode')) {
           $person_default_thumb_src = get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/assets/pp.png';
           $person_default_thumb = '<img width="150" height="150" src="' . $person_default_thumb_src . '" class="attachment-ap_person_thumb size-ap_person_thumb wp-post-image" alt="Default profile thumbnail"/>';
 
-          $person_github = get_post_meta($person->ID, '_ap_github', true);
-          $person_github = get_post_meta($person->ID, '_ap_linkedin', true);
-          $person_github = get_post_meta($person->ID, '_ap_xing', true);
-          $person_github = get_post_meta($person->ID, '_ap_facebook', true);
+          $person_github_link = get_post_meta($person->ID, '_ap_github', true);
+          $github_icon_src = get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/assets/github.svg';
+          
+          $person_linkedin_link = get_post_meta($person->ID, '_ap_linkedin', true);
+          $linkedin_icon_src = get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/assets/linkedin.svg';
+          
+          $person_xing_link = get_post_meta($person->ID, '_ap_xing', true);
+          $xing_icon_src = get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/assets/xing.svg';
+          
+          $person_facebook_link = get_post_meta($person->ID, '_ap_facebook', true);
+          $facebook_icon_src = get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/assets/facebook.svg';
 
           $markup .= '<div class="ap__item ap__item--' . $person->ID . '">';
           $markup .=   '<div class="ap__thumb">';
@@ -78,6 +85,16 @@ if (!class_exists('Add_People_Shortcode')) {
           $markup .=      '<span class="ap__popup__overlay ap__trigger"></span>';
           $markup .=      '<div class="ap__popup__window">';
           $markup .=        '<button class="ap__close ap__trigger">&#10005;</button>';
+          $markup .=        '<div class="ap__popup__content">';
+          $markup .=          '<h3 class="ap__popup__name">' . $person_first_name . ' ' . $person_last_name . '</h3>';
+          $markup .=          '<p class="ap__popup__description">' . $person_description . '</p>';
+          $markup .=          '<div class="ap__popup__links">';
+          $markup .=            $person_github_link ? '<a class="ap__popup__link ap__popup__link--github" href"' . $person_github_link . '" target="_blank"><img src="' . $github_icon_src . '"/></a>' : '';
+          $markup .=            $person_linkedin_link ? '<a class="ap__popup__link ap__popup__link--github" href"' . $person_linkedin_link . '" target="_blank"><img src="' . $linkedin_icon_src . '"/></a>' : '';
+          $markup .=            $person_facebook_link ? '<a class="ap__popup__link ap__popup__link--github" href"' . $person_facebook_link . '" target="_blank"><img src="' . $facebook_icon_src . '"/></a>' : '';
+          $markup .=            $person_xing_link ? '<a class="ap__popup__link ap__popup__link--github" href"' . $person_xing_link . '" target="_blank"><img src="' . $xing_icon_src . '"/></a>' : '';
+          $markup .=          '</div>';
+          $markup .=        '</div>';
           $markup .=      '</div>';
           $markup .=    '</div>';
           $markup .= '</div>';

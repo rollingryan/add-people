@@ -11,6 +11,7 @@ $white: rgb(255, 255, 255);
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
 
   @media screen and (min-width: $tablet) {
     flex-flow: row wrap;
@@ -102,23 +103,21 @@ $white: rgb(255, 255, 255);
   }
 
   &__popup {
-    position: relative;
+    position: fixed;
     z-index: 2;
     will-change: opacity left;
     left: -99999px;
     opacity: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
 
     &--visible {
       opacity: 1;
       left: 0;
 
       .ap__popup__window {
-        position: fixed;
         opacity: 1;
-      }
-
-      .ap__popup__overlay {
-        position: fixed;
       }
     }
 
@@ -135,14 +134,43 @@ $white: rgb(255, 255, 255);
 
     &__window {
       padding: 1rem;
-      background: rgba($white, 0.6);
+      background: rgba($white, 0.8);
       position: absolute;
       z-index: 3;
       border-radius: 1rem;
+      width: 40%;
+      margin-left: -20%;
       left: 50%;
-      top: 50%;
+      top: 25%;
+      max-height: 50vh;
       will-change: opacity;
       opacity: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    &__content {
+      padding-right: 2.5rem;
+    }
+
+    &__links {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    &__link {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.75rem;
+      cursor: pointer;
+      opacity: 0.6;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 
